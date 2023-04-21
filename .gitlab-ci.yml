@@ -1,0 +1,23 @@
+---
+variables:
+  STRUKTUR_WORKDIR: apps/nodejs/18/multistage
+  SLACK_CHANNEL: "#cruiser-matrix"
+  PROJECT_NAME: kirbyshooterpiano
+  KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: 'true'
+
+#services:
+#  - name: europe-west1-docker.pkg.dev/radio-france-k8s/ci/kafka3-ci:avocado-mexico-georgia-kansas
+#    alias: kafka
+
+image: node:18
+
+stages:
+  - test
+  - build
+  - deployment
+
+e2e-test:
+  stage: test
+  script:
+    - npm install
+    - npm run test
