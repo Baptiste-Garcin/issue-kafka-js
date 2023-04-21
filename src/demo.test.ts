@@ -25,11 +25,11 @@ describe('demo test', () => {
   beforeAll(async () => {
     producer = new Producer({
       clientId: 'producer',
-      brokers: ['127.0.0.1:9092']
+      brokers: ['kafka:9092']
     });
     admin = new Admin( {
       clientId: 'producer',
-      brokers: ['127.0.0.1:9092']
+      brokers: ['kafka:9092']
     });
     await Promise.all([producer.connect(), admin.connect()]);
     await admin.createTopics(topics);
@@ -38,7 +38,7 @@ describe('demo test', () => {
   beforeEach(async () => {
     consumer = new Consumer({
       clientId: 'producer',
-      brokers: ['127.0.0.1:9092'],
+      brokers: ['kafka:9092'],
       groupId: 'test-group',
     });
     await consumer.connect();
